@@ -1,0 +1,47 @@
+<div class="body">
+    <div class="container" id="container">
+        <div class="form">
+            <form #signupForm="ngForm" (ngSubmit)="SignUp()">
+                <h1>Create Account</h1>
+                <div class="form-group">
+                    <input [(ngModel)]="user.username" type="text" placeholder="Username" name="username" 
+                           #username="ngModel" required>
+                    <div *ngIf="username.touched && username.invalid" class="error-message">
+                        <div *ngIf="username.errors?.['required']">Username is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input [(ngModel)]="user.email" type="email" placeholder="Email" name="email" 
+                           #email="ngModel" required email>
+                    <div *ngIf="email.touched && email.invalid" class="error-message">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Email is invalid.</div>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <input [(ngModel)]="user.password" type="password" placeholder="Password" name="password" 
+                           #password="ngModel" required minlength="8">
+                    <div *ngIf="password.touched && password.invalid" class="error-message">
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                        <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input [(ngModel)]="user.repeatpassword" type="password" placeholder="Repeat Password" name="repeatpassword" 
+                           #repeatpassword="ngModel" required minlength="8">
+                    <div *ngIf="repeatpassword.touched && repeatpassword.invalid" class="error-message">
+                        <div *ngIf="repeatpassword.errors?.['required']">Repeat Password is required.</div>
+                        <div *ngIf="repeatpassword.errors?.['minlength']">Repeat Password must be at least 8 characters long.</div>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="!signupForm.form.valid">Sign Up</button>
+            </form>
+        </div>
+        <div class="banner">
+            <h1>Wise Tasking</h1>
+            <img src="../../../assets/img/logo.png" alt="">
+            <p>If you are already a friend, please log in so you can continue your duty.</p>
+            <button (click)="GoToSignIn()">Sign in</button>
+        </div>
+    </div>
+</div>

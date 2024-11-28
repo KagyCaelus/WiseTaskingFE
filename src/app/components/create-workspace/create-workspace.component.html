@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Create Workspace</h2>
+<mat-dialog-content>
+  <form #dialogForm="ngForm">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="data.name" name="name" required>
+      <mat-error *ngIf="dialogForm.controls['name'].invalid && dialogForm.controls['name'].touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="data.description" name="description" required>
+      <mat-error *ngIf="dialogForm.controls['description'].invalid && dialogForm.controls['description'].touched">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="data.password" name="password" type="password" required minlength="8">
+      <mat-error *ngIf="dialogForm.controls['password'].invalid && dialogForm.controls['password'].touched">
+        Password is required and must be at least 8 characters long
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Repeat Password</mat-label>
+      <input matInput [(ngModel)]="data.repeatpassword" name="repeatpassword" type="password" required minlength="8">
+      <mat-error *ngIf="dialogForm.controls['repeatpassword'].invalid && dialogForm.controls['repeatpassword'].touched">
+        Repeat Password is required and must be at least 8 characters long
+      </mat-error>
+      <mat-error *ngIf="data.password !== data.repeatpassword && dialogForm.controls['repeatpassword'].dirty">
+        Passwords must match
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Discard</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="data" [disabled]="dialogForm.invalid">Create</button>
+</mat-dialog-actions>

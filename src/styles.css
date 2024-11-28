@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@angular/material/prebuilt-themes/cyan-orange.css";
+
+body {
+    background-color: #512da8;
+    background: linear-gradient(to right, #bf8de0, #c9d6ff);
+}

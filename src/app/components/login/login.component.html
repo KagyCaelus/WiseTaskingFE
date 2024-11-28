@@ -1,0 +1,33 @@
+<div class="body">
+    <div class="container" id="container">
+        <div class="banner">
+            <h1>Wise Tasking</h1>
+            <img src="../../../assets/img/logo.png" alt="">
+            <p>If you are a new friend please enter your data so we can give you an account.</p>
+            <button (click)="GoToSignUp()">Sign up</button>
+        </div>
+        <div class="form">
+            <form #loginForm="ngForm" (ngSubmit)="Login()">
+                <h1>Log In</h1>
+                <div class="form-group">
+                    <input [(ngModel)]="user.email" type="email" placeholder="Email" name="email" 
+                           #email="ngModel" required email>
+                    <div *ngIf="email.touched && email.invalid" class="error-message">
+                        <div *ngIf="email.errors?.['required']">Email is required.</div>
+                        <div *ngIf="email.errors?.['email']">Email is invalid.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input [(ngModel)]="user.password" type="password" placeholder="Password" name="password" 
+                           #password="ngModel" required minlength="8">
+                    <div *ngIf="password.touched && password.invalid" class="error-message">
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                        <div *ngIf="password.errors?.['minlength']">Password must be at least 8 characters long.</div>
+                    </div>
+                </div>
+                <!-- <a href="#">Forget Your Password?</a> -->
+                <button type="submit" [disabled]="!loginForm.form.valid">Sign In</button>
+            </form>
+        </div>
+    </div>
+</div>
